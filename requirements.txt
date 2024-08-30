@@ -1,6 +1,6 @@
 Flask
 imutils
-Keras
+Keras==4.8.0.74
 opencv-python.headless==4.10.0.84
 Pillow
 gunicorn
