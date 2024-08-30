@@ -28,15 +28,15 @@ def index():
                 
                 # Resize and save the uploaded image
                 uploaded_image = Image.open(file_upload).resize((250,160))
-                uploaded_image.save(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.jpg'))
+                uploaded_image.save(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.png'))
 
                 # Resize and save the original image to ensure both uploaded and original matches in size
-                original_image = Image.open(os.path.join(app.config['EXISTNG_FILE'], 'image.jpg')).resize((250,160))
-                original_image.save(os.path.join(app.config['EXISTNG_FILE'], 'image.jpg'))
+                original_image = Image.open(os.path.join(app.config['EXISTNG_FILE'], 'image.png')).resize((250,160))
+                original_image.save(os.path.join(app.config['EXISTNG_FILE'], 'image.png'))
 
                 # Read uploaded and original image as array
-                original_image = cv2.imread(os.path.join(app.config['EXISTNG_FILE'], 'image.jpg'))
-                uploaded_image = cv2.imread(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.jpg'))
+                original_image = cv2.imread(os.path.join(app.config['EXISTNG_FILE'], 'image.png'))
+                uploaded_image = cv2.imread(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.png'))
 
                 # Convert image into grayscale
                 original_gray = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
@@ -58,10 +58,10 @@ def index():
                     cv2.rectangle(uploaded_image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
                 # Save all output images (if required)
-                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_original.jpg'), original_image)
-                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_uploaded.jpg'), uploaded_image)
-                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_diff.jpg'), diff)
-                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_thresh.jpg'), thresh)
+                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_original.png'), original_image)
+                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_uploaded.png'), uploaded_image)
+                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_diff.png'), diff)
+                cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_thresh.png'), thresh)
                 return render_template('index.html',pred=str(round(score*100,2)) + '%' + ' correct')
        
 # Main function
