@@ -1,7 +1,7 @@
 Flask
 imutils
 Keras
-opencv-python.headless==4.2.0.32
+opencv-python.headless==4.10.0.84
 Pillow
 gunicorn
 scikit-image
